@@ -1,4 +1,4 @@
-<mat-card class="max-w-7xl mx-auto" *ngIf="cart.items.length">
+<mat-card class="max-w-8xl mx-auto" *ngIf="cart.items.length">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
       <ng-container matColumnDef="product">
             <th mat-header-cell *matHeaderCellDef>Product</th>
@@ -18,7 +18,7 @@
         </ng-container>
         <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
-            <td mat-cell *matCellDef="let element">{{element.price | currency: 'Kshs'}}</td>
+            <td mat-cell *matCellDef="let element">{{element.price | currency: 'Usd'}}</td>
             <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
         <ng-container matColumnDef="quantity">
@@ -40,11 +40,11 @@
          <ng-container matColumnDef="total">
             <th mat-header-cell *matHeaderCellDef>Total</th>
             <td mat-cell *matCellDef="let element">
-               <span class="truncate max-w-xs">{{(element.quantity * element.price)| currency: 'Kshs' }}</span> 
+               <span class="truncate max-w-xs">{{(element.quantity * element.price)| currency: 'Usd' }}</span> 
             </td>
             <td mat-footer-cell *matFooterCellDef>
                 <span class="font-bold py-5 block">
-                    {{getTotal(cart.items) | currency: 'Kshs'}}
+                    {{getTotal(cart.items) | currency: 'Usd'}}
                 </span>
             </td>
             </ng-container>
@@ -59,7 +59,9 @@
                     <mat-icon>close</mat-icon></button>
                 </td>
                 <td mat-footer-cell *matFooterCellDef>
-                    <button mat-raised-button color="primary" class="float">
+                    <button 
+                        (click)="onCheckOut()" 
+                        mat-raised-button color="primary" class="float">
                         Proceed To CheckOut
                     </button>
                 </td>
